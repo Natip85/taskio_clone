@@ -1,0 +1,46 @@
+<!-- make the class for color here dynamic -->
+<h6 class="text-center my-3 ">
+    Daily Tasks ({{tasks.length}})
+</h6>
+
+<p class="text-secondary text-center mb-4">
+    {{currentDate | date}}
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <th>Description</th>
+    <th>Time</th>
+    <th>Done</th>
+    <th>Remove</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks" >
+      <td [ngClass]="completedCss(task)">{{task.description}}</td>
+      <td [ngClass]="completedCss(task)">{{task.description}}</td>
+      <td>
+        <i *ngIf="!task.complete" (click)="onComplete(task)" class="bi bi-circle"></i>
+          <!-- <i  class="bi bi-pencil"></i> -->
+        <span *ngIf="task.complete">
+          <i (click)="undoComplete(task)" class="bi bi-check2-circle text-success"></i>
+            <!-- <i  class="bi bi-check-lg text-success"></i> -->
+        </span>
+      </td>
+      <td>
+        <i (click)="onDelete(task)" class="bi bi-trash"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<label for="">Completed progress:</label>
+
+<div *ngIf="tasks.length" class="progress">
+  <div [ngClass]="progressClass()? progressClass(): ''" class="progress-bar progress-bar-striped     progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0"  aria-valuemax="100" [ngStyle]="{'width': progressStyle(tasks)+'%'}">
+         {{progressStyle(tasks)+'%'}}
+  </div>
+</div>
+
+
+
+

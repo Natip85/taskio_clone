@@ -1,0 +1,35 @@
+<h2 class="text-center">
+    About Us
+</h2>
+
+<p class="text-center">
+    If you are unhappy with the service contact us.
+</p>
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="col-6 m-auto">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input formControlName="name" type="text" id="name" class="form-control">
+    </div>
+
+    <app-contact-info [formField]="getFieldControl('name')"></app-contact-info>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input formControlName="email" formControlName="email" type="text" class="form-control" id="email"
+               placeholder="name@email.com">
+    </div>
+
+    <app-contact-info [formField]="getFieldControl('email')"></app-contact-info>
+
+    <div class="mb-3">
+        <label for="comment" class="form-label">How can we assist you?</label>
+        <textarea formControlName="comment" id="comment" rows="3" class="form-control"></textarea>
+    </div>
+
+    <app-contact-info [formField]="getFieldControl('comment')"></app-contact-info>
+
+    <button [disabled]="contactForm.invalid" type="submit" class="btn btn-primary btn-lg">
+        Send
+    </button>
+</form>
